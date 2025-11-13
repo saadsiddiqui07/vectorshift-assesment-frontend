@@ -1,5 +1,5 @@
 import { Position } from 'reactflow';
-import { createNodeComponent } from './nodeFactory';
+import { createNodeComponent } from './common/baseNode';
 
 export const LLMNode = createNodeComponent({
   title: 'LLM',
