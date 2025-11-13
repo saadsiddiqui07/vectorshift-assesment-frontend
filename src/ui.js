@@ -11,6 +11,13 @@ import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
 
+// New nodes
+import { DelayNode } from './nodes/delayNode';
+import { HttpNode } from './nodes/httpNode';
+import { DecisionNode } from './nodes/decisionNode';
+import { MathNode } from './nodes/mathNode';
+import { CollectorNode } from './nodes/collectorNode';
+
 import 'reactflow/dist/style.css';
 
 const gridSize = 20;
@@ -20,6 +27,11 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  delay: DelayNode,
+  httpRequest: HttpNode,
+  branch: DecisionNode,
+  math: MathNode,
+  collector: CollectorNode,
 };
 
 const selector = (state) => ({
@@ -45,10 +57,9 @@ export const PipelineUI = () => {
       onConnect
     } = useStore(selector, shallow);
 
-    const getInitNodeData = (nodeID, type) => {
-      let nodeData = { id: nodeID, nodeType: `${type}` };
-      return nodeData;
-    }
+    const getInitNodeData = useCallback((nodeID, type) => {
+      return { id: nodeID, nodeType: `${type}` };
+    }, []);
 
     const onDrop = useCallback(
         (event) => {
@@ -80,7 +91,7 @@ export const PipelineUI = () => {
             addNode(newNode);
           }
         },
-        [reactFlowInstance]
+        [reactFlowInstance, addNode, getInitNodeData, getNodeID]
     );
 
     const onDragOver = useCallback((event) => {
