@@ -1,35 +1,38 @@
-// textNode.js
+import { Position } from 'reactflow';
+import { createNodeComponent } from './nodeFactory';
 
-import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
-
-export const TextNode = ({ id, data }) => {
-  const [currText, setCurrText] = useState(data?.text || '{{input}}');
-
-  const handleTextChange = (e) => {
-    setCurrText(e.target.value);
-  };
-
-  return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <div>
-        <span>Text</span>
-      </div>
-      <div>
-        <label>
-          Text:
-          <input 
-            type="text" 
-            value={currText} 
-            onChange={handleTextChange} 
-          />
-        </label>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-output`}
-      />
-    </div>
-  );
-}
+export const TextNode = createNodeComponent({
+  title: 'Text',
+  badge: 'Transform',
+  description: 'Combine variables into a static or templated string.',
+  headerAccent: '#F59E0B',
+  fields: [
+    {
+      key: 'text',
+      label: 'Template',
+      inputType: 'textarea',
+      defaultValue: ({ data }) => data?.text || '{{input}}',
+      helperText: 'Supports moustache-style variables, e.g. {{input}}.',
+    },
+    {
+      key: 'trimWhitespace',
+      label: 'Trim whitespace',
+      inputType: 'checkbox',
+      defaultValue: ({ data }) => Boolean(data?.trimWhitespace),
+    },
+  ],
+  handles: [
+    {
+      type: 'target',
+      position: Position.Left,
+      idSuffix: 'input',
+      style: { top: '50%' },
+    },
+    {
+      type: 'source',
+      position: Position.Right,
+      idSuffix: 'output',
+      style: { top: '50%' },
+    },
+  ],
+});

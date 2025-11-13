@@ -9,8 +9,13 @@ export const PipelineToolbar = () => {
             <div style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                 <DraggableNode type='customInput' label='Input' />
                 <DraggableNode type='llm' label='LLM' />
-                <DraggableNode type='customOutput' label='Output' />
                 <DraggableNode type='text' label='Text' />
+                <DraggableNode type='math' label='Math' />
+                <DraggableNode type='branch' label='Branch' />
+                <DraggableNode type='delay' label='Delay' />
+                <DraggableNode type='httpRequest' label='HTTP' />
+                <DraggableNode type='collector' label='Collector' />
+                <DraggableNode type='customOutput' label='Output' />
             </div>
         </div>
     );
