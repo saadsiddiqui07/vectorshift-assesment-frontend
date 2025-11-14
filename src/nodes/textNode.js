@@ -47,18 +47,27 @@ export const TextNode = createNodeComponent({
       defaultValue: ({ data }) => Boolean(data?.trimWhitespace),
     },
   ],
-  handles: [
-    {
-      type: 'target',
-      position: Position.Left,
-      idSuffix: 'input',
-      style: { top: '50%' },
-    },
-    {
-      type: 'source',
-      position: Position.Right,
-      idSuffix: 'output',
-      style: { top: '50%' },
-    },
-  ],
+  handles: ({ values }) => {
+    const text = values?.text || '';
+    const names = Array.from(new Set(Array.from(text.matchAll(/\{\{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\}\}/g)).map((m) => m[1])));
+    const count = names.length;
+    const leftHandles = names.map((name, i) => {
+      const top = count <= 1 ? '50%' : `${30 + (i * (40 / (count - 1)))}%`;
+      return {
+        type: 'target',
+        position: Position.Left,
+        idSuffix: name,
+        style: { top },
+      };
+    });
+    return [
+      ...leftHandles,
+      {
+        type: 'source',
+        position: Position.Right,
+        idSuffix: 'output',
+        style: { top: '50%' },
+      },
+    ];
+  },
 });

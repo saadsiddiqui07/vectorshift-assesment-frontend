@@ -19,16 +19,13 @@ export const LLMNode = createNodeComponent({
       ],
     },
     {
-      key: 'temperature',
-      label: 'Temperature',
-      inputType: 'number',
-      defaultValue: ({ data }) =>
-        data?.temperature !== undefined ? data.temperature : 0.2,
-      inputProps: {
-        min: 0,
-        max: 1,
-        step: 0.1,
-      },
+      key: 'prompt',
+      label: 'Prompt',
+      inputType: 'textarea',
+      defaultValue: ({ data }) => data?.prompt || '',  
+    inputProps: {
+      rows: 4,
+    },
       helperText: 'Higher values increase creativity. Range 0–1.',
     },
     {

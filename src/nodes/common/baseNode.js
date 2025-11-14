@@ -259,6 +259,11 @@ const NodeTemplate = memo(({ definition, id, data }) => {
     [style, id, data, values]
   );
 
+  const computedHandles = useMemo(
+    () => (typeof handles === 'function' ? handles({ id, data, values }) : handles),
+    [handles, id, data, values]
+  );
+
   return (
     <div style={mergeStyles(baseContainerStyle, computedStyle)}>
       {handles
@@ -325,7 +330,7 @@ const NodeTemplate = memo(({ definition, id, data }) => {
 
       {footer ? footer(context) : null}
 
-      {handles
+      {computedHandles
         .filter((handle) => handle.position === Position.Right)
         .map((handle) => (
           <Handle
@@ -341,7 +346,7 @@ const NodeTemplate = memo(({ definition, id, data }) => {
           />
         ))}
 
-      {handles
+      {computedHandles
         .filter(
           (handle) =>
             handle.position !== Position.Left &&
