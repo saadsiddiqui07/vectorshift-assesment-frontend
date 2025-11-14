@@ -12,13 +12,11 @@ export const useStore = create((set, get) => ({
     nodes: [],
     edges: [],
     getNodeID: (type) => {
-        const newIDs = {...get().nodeIDs};
-        if (newIDs[type] === undefined) {
-            newIDs[type] = 0;
-        }
-        newIDs[type] += 1;
-        set({nodeIDs: newIDs});
-        return `${type}-${newIDs[type]}`;
+        const ids = get().nodeIDs || {};
+        const current = ids[type] ?? -1;
+        const next = current + 1;
+        set({ nodeIDs: { ...ids, [type]: next } });
+        return `${type}-${next}`;
     },
     addNode: (node) => {
         set({
