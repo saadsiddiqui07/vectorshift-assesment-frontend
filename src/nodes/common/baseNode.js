@@ -119,12 +119,27 @@ const renderDefaultField = (field, value, onChange) => {
   }
 
   if (inputType === 'textarea') {
+    const autoResize = Boolean(inputProps?.autoResize);
+    const textareaProps = autoResize
+      ? {
+          onInput: (event) => {
+            const el = event.target;
+            el.style.height = 'auto';
+            el.style.height = `${el.scrollHeight}px`;
+          },
+        }
+      : {};
+
     return (
       <textarea
-        style={textareaStyle}
+        style={mergeStyles(
+          textareaStyle,
+          autoResize ? { overflow: 'hidden' } : null
+        )}
         value={value ?? ''}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
+        {...textareaProps}
         {...inputProps}
       />
     );
@@ -255,7 +270,12 @@ const NodeTemplate = memo(({ definition, id, data }) => {
   );
 
   return (
-    <div style={mergeStyles(baseContainerStyle, style)}>
+    <div
+      style={mergeStyles(
+        baseContainerStyle,
+        typeof style === 'function' ? style(context) : style
+      )}
+    >
       {handles
         .filter((handle) => handle.position === Position.Left)
         .map((handle) => (
