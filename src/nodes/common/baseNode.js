@@ -266,7 +266,7 @@ const NodeTemplate = memo(({ definition, id, data }) => {
 
   return (
     <div style={mergeStyles(baseContainerStyle, computedStyle)}>
-      {handles
+      {computedHandles
         .filter((handle) => handle.position === Position.Left)
         .map((handle) => (
           <Handle
