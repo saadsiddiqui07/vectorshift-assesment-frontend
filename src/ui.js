@@ -101,7 +101,7 @@ export const PipelineUI = () => {
 
     return (
         <>
-        <div ref={reactFlowWrapper} style={{width: '100wv', height: '70vh'}}>
+        <div ref={reactFlowWrapper} style={{width: '100vw', height: '75vh', borderRadius: 16, overflow: 'hidden', border: '1px solid #E5E7EB', boxShadow: '0 12px 28px rgba(15,23,42,0.08)'}}>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}

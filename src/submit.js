@@ -22,8 +22,23 @@ export const SubmitButton = () => {
     }, [nodes, edges]);
 
     return (
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <button type="button" onClick={onSubmit}>Submit</button>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '8px'}}>
+            <button
+                type="button"
+                onClick={onSubmit}
+                style={{
+                    padding: '10px',
+                    borderRadius: 999,
+                    border: '1px solid #D1D5DB',
+                    background: 'linear-gradient(135deg, #EEF2FF 0%, #FFFFFF 100%)',
+                    boxShadow: '0 6px 16px rgba(15,23,42,0.06)',
+                    color: '#111827',
+                    fontWeight: 600,
+                    cursor: 'pointer'
+                }}
+            >
+                Submit
+            </button>
         </div>
     );
 }

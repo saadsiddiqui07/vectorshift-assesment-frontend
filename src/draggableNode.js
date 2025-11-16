@@ -15,18 +15,20 @@ export const DraggableNode = ({ type, label }) => {
         onDragEnd={(event) => (event.target.style.cursor = 'grab')}
         style={{ 
           cursor: 'grab', 
-          minWidth: '80px', 
-          height: '60px',
+          minWidth: '96px', 
+          height: '52px',
           display: 'flex', 
           alignItems: 'center', 
-          borderRadius: '8px',
-          backgroundColor: '#1C2536',
+          borderRadius: '12px',
+          background: 'linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)',
+          border: '1px solid #E5E7EB',
+          boxShadow: '0 6px 16px rgba(15,23,42,0.06)',
           justifyContent: 'center', 
           flexDirection: 'column'
         }} 
         draggable
       >
-          <span style={{ color: '#fff' }}>{label}</span>
+          <span style={{ color: '#0F172A', fontWeight: 600, fontSize: 12 }}>{label}</span>
       </div>
     );
   };
