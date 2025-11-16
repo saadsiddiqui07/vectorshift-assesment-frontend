@@ -1,6 +1,7 @@
 // submit.js
 import { useCallback } from 'react';
 import { useStore } from './store';
+import { API_BASE_URL, PALETTE } from './constants';
 
 export const SubmitButton = () => {
     const nodes = useStore((s) => s.nodes);
@@ -8,7 +9,7 @@ export const SubmitButton = () => {
 
     const onSubmit = useCallback(async () => {
         try {
-            const res = await fetch('http://localhost:8000/pipelines/parse', {
+            const res = await fetch(`${API_BASE_URL}/pipelines/parse`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ nodes, edges }),
@@ -27,12 +28,12 @@ export const SubmitButton = () => {
                 type="button"
                 onClick={onSubmit}
                 style={{
-                    padding: '10px',
-                    borderRadius: 999,
+                    padding: '16px',
+                    borderRadius:8,
                     border: '1px solid #D1D5DB',
-                    background: 'linear-gradient(135deg, #EEF2FF 0%, #FFFFFF 100%)',
+                    background: PALETTE.bluePrimary,
                     boxShadow: '0 6px 16px rgba(15,23,42,0.06)',
-                    color: '#111827',
+                    color: PALETTE.textLight,
                     fontWeight: 600,
                     cursor: 'pointer'
                 }}

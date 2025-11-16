@@ -102,7 +102,7 @@ export const PipelineUI = () => {
 
     return (
         <>
-        <div ref={reactFlowWrapper} style={{width: '100vw', height: '75vh', borderRadius: 16, overflow: 'hidden', border: `1px solid ${PALETTE.borderDark}`, boxShadow: '0 12px 28px rgba(0,0,0,0.25)'}}>
+        <div ref={reactFlowWrapper} style={{width: '100vw', height: '80vh', borderRadius: 16, overflow: 'hidden'}}>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -118,8 +118,8 @@ export const PipelineUI = () => {
                 connectionLineType='smoothstep'
             >
                 <Background color={PALETTE.gridDark} gap={gridSize} />
-                <Controls style={{ background: PALETTE.panelDark, border: `1px solid ${PALETTE.borderDark}`, color: PALETTE.textLight }} />
-                <MiniMap style={{ background: PALETTE.darkBg, border: `1px solid ${PALETTE.borderDark}` }} nodeColor={() => PALETTE.borderDark} />
+                <Controls style={{ background: PALETTE.panelDark, border: `1px solid ${PALETTE.bluePrimary}`, color: PALETTE.textLight }} />
+                <MiniMap style={{ background: PALETTE.lightBg, border: `1px solid ${PALETTE.borderDark}` }} nodeColor={() => PALETTE.borderDark} />
             </ReactFlow>
         </div>
         </>
