@@ -188,7 +188,6 @@ const NodeTemplate = memo(({ definition, id, data }) => {
   const [values, setValues] = useState(() =>
     initializeValues(fields, { id, data })
   );
-  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     setValues((prev) => {
@@ -291,31 +290,15 @@ const NodeTemplate = memo(({ definition, id, data }) => {
       >
         <span style={titleStyle}>{title}</span>
         {badge ? <span style={badgeStyle}>{badge}</span> : null}
-        <button
-          onClick={() => setCollapsed((c) => !c)}
-          aria-label="Toggle"
-          style={{
-            border: 'none',
-            background: 'transparent',
-            cursor: 'pointer',
-            transform: collapsed ? 'rotate(-90deg)' : 'rotate(0deg)',
-            transition: 'transform 160ms ease',
-            color: '#334155',
-            fontSize: 16,
-            lineHeight: 1,
-          }}
-        >
-          ▾
-        </button>
       </div>
 
-      {!collapsed && description ? (
+      {description ? (
         <div style={descriptionStyle}>{description}</div>
       ) : null}
 
       {body ? body(context) : null}
 
-      {!collapsed && fields.length ? (
+      {fields.length ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {fields.map((field) => {
             const value = values[field.key];
@@ -345,7 +328,7 @@ const NodeTemplate = memo(({ definition, id, data }) => {
         </div>
       ) : null}
 
-      {!collapsed && footer ? footer(context) : null}
+      {footer ? footer(context) : null}
 
       {computedHandles
         .filter((handle) => handle.position === Position.Right)
