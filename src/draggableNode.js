@@ -1,4 +1,5 @@
 // draggableNode.js
+import { PALETTE } from './constants';
 
 export const DraggableNode = ({ type, label }) => {
     const onDragStart = (event, nodeType) => {
@@ -20,15 +21,15 @@ export const DraggableNode = ({ type, label }) => {
           display: 'flex', 
           alignItems: 'center', 
           borderRadius: '12px',
-          background: 'linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)',
-          border: '1px solid #E5E7EB',
-          boxShadow: '0 6px 16px rgba(15,23,42,0.06)',
+          background: `linear-gradient(135deg, ${PALETTE.darkBg} 0%, ${PALETTE.panelDark} 100%)`,
+          border: `1px solid ${PALETTE.borderSlate}`,
+          boxShadow: '0 6px 16px rgba(0,0,0,0.25)',
           justifyContent: 'center', 
           flexDirection: 'column'
         }} 
         draggable
       >
-          <span style={{ color: '#0F172A', fontWeight: 600, fontSize: 12 }}>{label}</span>
+          <span style={{ color: PALETTE.textLight, fontWeight: 600, fontSize: 12 }}>{label}</span>
       </div>
     );
   };

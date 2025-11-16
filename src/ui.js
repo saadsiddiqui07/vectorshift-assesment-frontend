@@ -6,6 +6,7 @@ import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
+import { PALETTE } from './constants';
 import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
@@ -101,7 +102,7 @@ export const PipelineUI = () => {
 
     return (
         <>
-        <div ref={reactFlowWrapper} style={{width: '100vw', height: '75vh', borderRadius: 16, overflow: 'hidden', border: '1px solid #E5E7EB', boxShadow: '0 12px 28px rgba(15,23,42,0.08)'}}>
+        <div ref={reactFlowWrapper} style={{width: '100vw', height: '75vh', borderRadius: 16, overflow: 'hidden', border: `1px solid ${PALETTE.borderDark}`, boxShadow: '0 12px 28px rgba(0,0,0,0.25)'}}>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -116,9 +117,9 @@ export const PipelineUI = () => {
                 snapGrid={[gridSize, gridSize]}
                 connectionLineType='smoothstep'
             >
-                <Background color="#aaa" gap={gridSize} />
-                <Controls />
-                <MiniMap />
+                <Background color={PALETTE.gridDark} gap={gridSize} />
+                <Controls style={{ background: PALETTE.panelDark, border: `1px solid ${PALETTE.borderDark}`, color: PALETTE.textLight }} />
+                <MiniMap style={{ background: PALETTE.darkBg, border: `1px solid ${PALETTE.borderDark}` }} nodeColor={() => PALETTE.borderDark} />
             </ReactFlow>
         </div>
         </>
