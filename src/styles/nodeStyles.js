@@ -1,10 +1,10 @@
 export const baseContainerStyle = {
   width: 260,
   minHeight: 140,
-  borderRadius: 12,
-  border: '1px solid #E2E8F0',
-  background: '#FFFFFF',
-  boxShadow: '0 10px 20px rgba(15, 23, 42, 0.08)',
+  borderRadius: 14,
+  border: '1px solid #E5E7EB',
+  background: 'linear-gradient(135deg, rgba(248,250,252,1) 0%, rgba(255,255,255,1) 100%)',
+  boxShadow: '0 12px 24px rgba(15, 23, 42, 0.08)',
   padding: '12px 14px',
   display: 'flex',
   flexDirection: 'column',
@@ -32,7 +32,7 @@ export const titleStyle = {
 export const badgeStyle = {
   padding: '2px 6px',
   borderRadius: 999,
-  background: 'rgba(37, 99, 235, 0.12)',
+  background: 'rgba(37, 99, 235, 0.10)',
   color: '#1D4ED8',
   fontSize: 11,
   fontWeight: 600,
@@ -91,5 +91,6 @@ export const defaultHandleStyle = {
   height: 10,
   backgroundColor: '#2563EB',
   border: '2px solid #EFF6FF',
+  boxShadow: '0 0 0 2px rgba(37,99,235,0.15)',
 };
 
